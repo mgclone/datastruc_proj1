@@ -2,23 +2,36 @@
 #include <fstream>
 #include <string>
 #include <algorithm>
+#include <vector>
+#include "person.h"
 
 
 int main(){
-
-	std::string name;
 
 	std::string fname;
 	std::string lname;
 	int age;
 
 	std::ifstream in_file;
+	in_file.open("names.txt");
+
+	std::vector<pc::Person> temp_person;
+
+
+
+	while (in_file >> fname >> lname >> age){
+
+		temp_person.push_back(pc::Person(fname, lname, age));
+
+	}
+
+	for (pc::Person e : temp_person){
+		std::cout << e.getFName() << std::endl;
+	}
+
+
+	//notes old code below.
 	/*
-	in_file.open("names.txt");
-	while (std::getline(in_file, name)){
-		std::cout << name << std::endl;
-	}*/
-	in_file.open("names.txt");
 	while (in_file >> fname >> lname >> age){
 
 		fname.erase(std::remove_if(fname.begin(), fname.end(), ispunct), fname.end());
@@ -30,9 +43,11 @@ int main(){
 		std::cout << std::endl;
 		//commen
 		//anothe
-		//tea
+		//te
 		std::cout << "waht up" << std::endl;
 	}
+	*/
+	
 
 	return 0;
 }
